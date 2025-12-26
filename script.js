@@ -1,18 +1,16 @@
-// Task storage
+
 let tasks = [];
 
-// Load tasks from localStorage on page load
+
 window.addEventListener('DOMContentLoaded', () => {
     loadTasks();
     renderTasks();
     updateProgress();
     updateTimeDistribution();
 });
-
-// Add task button event listener
 document.getElementById('addTaskBtn').addEventListener('click', addTask);
 
-// Allow Enter key to add task
+
 document.getElementById('subjectInput').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
@@ -21,7 +19,7 @@ document.getElementById('hoursInput').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') addTask();
 });
 
-// Add new task
+
 function addTask() {
     const subjectInput = document.getElementById('subjectInput');
     const hoursInput = document.getElementById('hoursInput');
@@ -29,7 +27,7 @@ function addTask() {
     const subject = subjectInput.value.trim();
     const hours = parseFloat(hoursInput.value);
     
-    // Validation
+    
     if (subject === '') {
         alert('Please enter a subject name!');
         return;
@@ -40,7 +38,7 @@ function addTask() {
         return;
     }
     
-    // Create new task object
+    
     const task = {
         id: Date.now(),
         subject: subject,
@@ -48,22 +46,22 @@ function addTask() {
         completed: false
     };
     
-    // Add to tasks array
+   
     tasks.push(task);
     
-    // Save to localStorage
+   
     saveTasks();
     
-    // Clear inputs
+    
     subjectInput.value = '';
     hoursInput.value = '';
     
-    // Update UI
+    
     renderTasks();
     updateProgress();
     updateTimeDistribution();
     
-    // Focus back on subject input
+   
     subjectInput.focus();
 }
 
@@ -237,4 +235,5 @@ function loadTasks() {
     if (savedTasks) {
         tasks = JSON.parse(savedTasks);
     }
+
 }
